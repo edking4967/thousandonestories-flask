@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+        <h2>Home page</h2>
+        <p>This page can be accessed by anyone.</p><br/>
+        <p><a href={{ url_for('home_page') }}>Home page</a> (anyone)</p>
+        <p><a href={{ url_for('members_page') }}>Members page</a> (login required)</p>
+        {% block stories %}
+            {% for story in story_list %}
+            <div class="story_block">{{ story }}</div>
+            {% endfor %}
+        {% endblock %}
+{% endblock %}
