@@ -156,17 +156,28 @@ def create_app():
         return render_template("newevening.html", form=eveform)
 
     @app.route('/evenings', defaults={'path': ''})
+    @app.route('/evenings/', defaults={'path': ''})
     @app.route('/evenings/<path:path>')
     def evening(path):
         if path == '':
             evenings = Evening.query.all()
-            evenings_list = ''
-            for e in evenings:
-                evenings_list = evenings_list + e.name + ', '
-            return render_template_string("all evenings: " + evenings_list)
+            return render_template("evenings.html", evenings_list= evenings)
         else:
-           stories = Evening.query(name=path)
-           return render_template("home.html", stories) 
+
+            #stories = Evening.query.filter(evening.name=path)
+            match = db.session.query(Evening).filter(Evening.name == path).all()
+          
+            if match:
+                stories = match[0].stories
+            
+                return render_template("eveningspage.html", story_list = stories, evening_name = path) 
+
+            else:
+                if path.endswith("/add"):
+                    return render_template_string("addyaddyadd")
+                else:
+                    return render_template_string("no matching evening")
+
     return app
 
 

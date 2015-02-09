@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+{% for evening in evenings_list %}
+<p><a href="/evenings/{{evening.name}}">{{ evening.name }}</a></p>
+{% endfor %}
+{% endblock %}
