@@ -35,9 +35,13 @@
             margin-left: auto;
             margin-right: auto;
             margin-top: 20px;
-            background-image: url("http://thousandonestories.com/wp-content/uploads/2014/12/bgimage1.png");
+            /*background-image: url("content/uploads/2014/12/bgimage1.png");*/
             border-radius: 5px;
             box-shadow: 4px 4px 0 rgba(0,0,0,.5);
+        }
+        .alignright
+        {
+            float:right;
         }
     </style>
 
@@ -67,10 +71,18 @@
     </div>
     {% block menu %}
     <div id="menu-div" class="with-margins">
+        <span>
         <a href="/">Home</a>
         {% if current_user.is_authenticated() %}
+            &nbsp; | &nbsp;<a href="/write">Tell a story</a>
             &nbsp; | &nbsp; <a href="{{ url_for('user.profile') }}">User profile</a>
+            &nbsp; | &nbsp; <a href="/mystories">Stories I've written</a>
+
+        </span>
+        <span class="alignright">
+            <a href="/newevening">New evening</a>
         {% endif %}
+        </span>
     </div>
     {% endblock %}
     <hr class="no-margins"/>

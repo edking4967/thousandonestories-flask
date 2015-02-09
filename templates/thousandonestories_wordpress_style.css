@@ -1,0 +1,432 @@
+/*
+Welcome to Custom CSS!
+
+CSS (Cascading Style Sheets) is a kind of code that tells the browser how
+to render a web page. You may delete these comments and get started with
+your customizations.
+
+By default, your stylesheet will be loaded after the theme stylesheets,
+which means that your rules can take precedence and override the theme CSS
+rules. Just write here what you want to change, you don't need to copy all
+your theme's stylesheet content.
+*/
+/*
+Welcome to Custom CSS!
+
+CSS (Cascading Style Sheets) is a kind of code that tells the browser how
+to render a web page. You may delete these comments and get started with
+your customizations.
+
+By default, your stylesheet will be loaded after the theme stylesheets,
+which means that your rules can take precedence and override the theme CSS
+rules. Just write here what you want to change, you don't need to copy all
+your theme's stylesheet content.
+
+If you need any further help, ask in the CSS Customization forum.
+*/
+#masthead, .site-footer, .hentry, #comments, .entry-content div.sharedaddy div.sd-block {
+    border-style: none;
+}
+
+#masthead {
+    padding-top: 0;
+}
+
+.navigation-main, .entry-meta span, .entry-meta span:first-child {
+    border-style: none;
+}
+
+.site-info a {
+    color: #FFFFFF;
+}
+
+.entry-meta, .author.vcard {
+    display: none;
+}
+
+.entry-content {
+    color: black;
+    background-color: rgba(255,255,255,1);
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: none;
+    z-index: 99;
+}
+
+.entry-content {
+/*  border-style: solid;
+    border-width:1px*/
+}
+
+.hentry {
+    padding: 10px;
+}
+
+body.custom-background {
+    background-attachment: fixed;
+}
+
+.entry-content.clear a {
+    color: grey;
+}
+
+h1, header.entryheader, h1.entry-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.entry-content a {
+    color: black;
+}
+
+.categories-links {
+    display: none;
+}
+
+.post {
+    border-style: none;
+}
+
+/*.site-header img {
+    height: 70%;
+    width: 70%;
+}*/
+#twitter_timeline-2 {
+    display: none;
+    padding: 0;
+}
+
+#image-2 {
+    padding: 0;
+    height: 25px;
+    position: fixed;
+    left: 130px;
+    z-index: 100002;
+}
+
+#image-3 {
+    position: fixed;
+    padding: 0;
+    height: 25px;
+    position: fixed;
+    left: 90px;
+    z-index: 100001;
+}
+
+#image-2, #image-3 {
+    opacity: .8;
+}
+
+#image-2:hover, #image-3:hover {
+    opacity: 1;
+}
+
+#image-2 img, #image-3 img {
+    height: 30px;
+    width: auto;
+}
+
+#wpadminbar {
+/*display: none;*/
+}
+
+#top-sidebar-one {
+/*display:inline;   */
+    padding: 0;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    margin: auto;
+    z-index: 100;
+}
+
+#follow_button_widget-2 {
+    position: fixed;
+    left: 0;
+}
+
+#widgets-wrapper {
+    position: fixed;
+    top: 0;
+    margin: auto;
+    z-index: 100;
+    width: 100%;
+    height: 0;
+    padding-top: 25px;
+    background-color: rgba(255,255,255,.7);
+    display: none;
+}
+
+#triggers-wrapper {
+    display: none;
+}
+
+.entry-format-badge {
+    display: none;
+}
+
+.menu a {
+    color: rgba(255,255,255,.8);
+    text-shadow: 2px 2px rgba(00,00,00,.5);
+}
+
+#reply-title,.text-nav {
+    color: rgba(255,255,255,.8);
+}
+
+.rollimg:hover {
+    opacity: /*display:none;*/
+.9;
+}
+
+#infinite-footer {
+    z-index: 100005;
+    background-color: rgba(0,0,0,.7);
+}
+
+.img-center-align {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#follow-bar /* displays facebook and twitter links */ {
+}
+
+.story_block {
+    padding: 2px;
+    text-align: center;
+    width: 350px;
+    background-color: rgba(255,255,255,.8);
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url("http://thousandonestories.com/wp-content/uploads/2014/12/bgimage1.png");
+    border-radius: 5px;
+    box-shadow: 4px 4px 0 rgba(0,0,0,.5);
+}
+
+.story_block a {
+    color: black;
+}
+
+.commentmetadata a:link, .commentmetadata a:visited {
+    color: black;
+}
+
+.says  /* not ideal, says is cute. */ {
+    display: none;
+}
+
+div#asd {
+    float: none;
+    text-align: center;
+    padding: 0;
+    max-width: 100%;
+    clear: both;
+    width: 400px;
+    margin: 0 auto;
+}
+
+#menu-item-657 a:only-child {
+    color: rgba(255,200,0,230);
+}
+
+.story_block a, .story_block a:hover {
+    color: black;
+}
+
+.entry-title {
+}
+
+#menu-menu-two {
+    font-size: 15px;
+}
+
+.entry-title {
+    font-size: 50px;
+    color: rgb(255,255,255);
+/*text-shadow: 1px 1px black;*/
+}
+
+/*
+h1 a:link {
+    color: rgba(255,255,255,1);
+    text-shadow: 2px 2px rgba(00,00,00,.5);
+}
+
+h1 a:visited {
+    color: rgba(255,255,255,1);
+    text-shadow: 2px 2px rgba(00,00,00,.5);
+}
+
+h1 a:hover
+{
+    color: rgba(255,255,255,.8);
+    text-shadow: 2px 2px rgba(00,00,00,.5);
+}
+*/
+h1 a:link {
+    color: rgba(0,0,0,1);
+    text-shadow: 0;
+}
+
+h1 a:visited {
+    color: rgba(0,0,0,1);
+    text-shadow: 0;
+}
+
+h1 a:hover {
+    color: rgba(0,0,0,.8);
+    text-shadow: 0;
+}
+
+.entry-content {
+    border-radius: 8px;
+    margin-top: 0;
+}
+
+/* Speech bubbles: */
+.entry-content {
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.entry-content:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 8px 12px 8px 0;
+    border-color: transparent #FFFFFF;
+    display: block;
+    width: 0;
+    z-index: 1;
+    left: -12px;
+    top: 12px;
+}
+
+.entry-header {
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    background-color: rgba(255,255,255,.6);
+    max-width: 58%;
+    margin: auto;
+    padding-bottom: 16px;
+}
+
+.entry-title a, .entry-title a:hover {
+    color: rgb(70,70,70);
+}
+
+a, #page a:hover {
+    color: rgb(70,70,70);
+}
+
+.wp-post-image {
+    padding: 10px;
+    background-image: url("http://thousandonestories.com/wp-content/uploads/2014/12/bgimage1.png");
+    border-radius: 4px;
+}
+
+a, #page .story_block a:hover {
+    color: rgb(100,100,100);
+}
+
+.author-bubble {
+    margin-top: 16px;
+    font-size: large;
+    float: left;
+    background-image: url("http://thousandonestories.com/wp-content/uploads/2014/12/bgimage1.png");
+    border-radius: 12px;
+    padding: 10px;
+    border-style: solid;
+    border-color: rgb(80,80,80);
+    border-width: 0;
+    max-width: 120px;
+    background: none repeat scroll 0 0 rgba(255,255,255,.6);
+}
+
+/* super-blabbos */
+@media screen and (max-width: 850px) {
+    #ad-area {
+        display: none;
+    }
+}
+
+#ad-area {
+    max-width: 60%;
+    background-color: rgba(255,255,255,.7);
+    margin: auto;
+    font-size: small;
+    position: relative;
+    height: 20px;
+}
+
+#ad-right {
+    text-align: right;
+    right: 10px;
+    position: absolute;
+}
+
+#ad-left {
+    position: absolute;
+    left: 10px;
+}
+
+/*tooltips!*/
+a.tooltip {
+    outline: none;
+    color: black;
+}
+
+a.tooltip strong {
+    line-height: 30px;
+}
+
+a.tooltip:hover {
+    text-decoration: none;
+}
+
+a.tooltip span {
+    z-index: 10;
+    display: none;
+    padding: 14px 20px;
+    margin-top: -30px;
+    margin-left: 28px;
+    width: 300px;
+    line-height: 24px;
+    font-size: large;
+}
+
+a.tooltip:hover span {
+    display: inline;
+    position: absolute;
+    color: #111;
+    border: 1px solid #DCA;
+    background: #fffAF0;
+}
+
+/*CSS3 extras*/
+a.tooltip span {
+    border-radius: 4px;
+/*  box-shadow: 5px 5px 8px #CCC;*/
+}
+
+a.tooltip:link {
+    color: black;
+}
+
+.bubble-sub {
+    overflow: hidden;
+}
+
+#page .menu a:hover {
+    color: white;
+}

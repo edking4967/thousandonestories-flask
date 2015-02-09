@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<form method=post action="/newevening">
+  <h1>Create an evening</h1>
+  <p>TODO: what does this actually mean?</p>
+  <dl>
+    {{ render_field(form.name) }}
+    {{ render_field(form.description) }}
+  </dl>
+  <p><input type=submit value=Post>
+</form>
+{% endblock %} 

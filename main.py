@@ -1,10 +1,21 @@
 #!/usr/bin/python
 
 import os
-from flask import Flask, render_template_string, render_template
+from flask import Flask, render_template_string, render_template, request, flash
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
-from flask_user import login_required, UserManager, UserMixin, SQLAlchemyAdapter
+from sqlalchemy import exists
+from flask_user import login_required, UserManager, UserMixin, SQLAlchemyAdapter, current_user
+from wtforms import Form, BooleanField, TextField, PasswordField, validators, TextAreaField
+
+class WriteForm(Form):
+    text = TextAreaField('Story', [validators.Length(min=100,max=10000)] )
+    title = TextField('Title', [validators.Length(min=1,max=500)]  )
+
+class EveningForm(Form):
+    name = TextField('Name', [validators.Length(min=1,max=255)])
+    description = TextAreaField('Description', [validators.Length(min=20,max=1000)] )
+
 # Use a Class-based config to avoid needing a 2nd file
 # os.getenv() enables configuration through OS environment variables
 class ConfigClass(object):
@@ -38,6 +49,7 @@ def create_app():
 
     # Define the User data model. Make sure to add flask.ext.user UserMixin !!!
     class User(db.Model, UserMixin):
+        __tablename__='user'
         id = db.Column(db.Integer, primary_key=True)
 
         # User authentication information
@@ -54,6 +66,48 @@ def create_app():
         first_name = db.Column(db.String(100), nullable=False, server_default='')
         last_name = db.Column(db.String(100), nullable=False, server_default='')
 
+        stories = db.relationship('Story', backref='user')
+
+        evenings= db.relationship('Evening', backref='user')
+
+    # Define the Story data model.
+    class Story(db.Model):
+        __tablename__='story'
+
+        id = db.Column(db.Integer, primary_key=True)
+        text = db.Column(db.String(10000), nullable=False, unique=False)  # ! can you have a 10000 character string?
+        title = db.Column(db.String(500), nullable=False, unique=False)
+        
+        author_id=db.Column(db.Integer, db.ForeignKey('user.id'))
+        #author = db.relationship('User', backref=db.backref('story', lazy='dynamic'))
+        author = db.relationship('User')
+
+        evening_id=db.Column(db.Integer, db.ForeignKey('evening.id'))
+        #evening = db.relationship('evening')
+
+        def __init__(self, title, text, author):
+            self.title=title
+            self.text=text
+            self.author=author
+
+
+    class Evening(db.Model):
+        __tablename__='evening'
+
+        id = db.Column(db.Integer, primary_key=True)
+        name = db.Column(db.String(255), nullable=False, unique=True)
+
+        stories = db.relationship('Story', backref=db.backref('evening'))
+
+        creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+        creator = db.relationship('User')
+        
+        def __init__(self, name, description, creator):
+            self.name = name
+            self.description = description
+            self.creator = creator
+
+
     # Create all database tables
     db.create_all()
 
@@ -64,7 +118,8 @@ def create_app():
     # The Home page is accessible to anyone
     @app.route('/')
     def home_page():
-        return render_template("home.html", story_list=[1,2,3,4])
+        stories = Story.query.all()
+        return render_template("home.html", story_list=stories)
 
     # The Members page is only accessible to authenticated users
     @app.route('/members')
@@ -72,6 +127,46 @@ def create_app():
     def members_page():
         return render_template("members.html")
 
+    @app.route('/mystories')  #TODO: goes on profile page
+    @login_required
+    def mystories():
+        stories = current_user.stories
+        return render_template("home.html", story_list=stories)
+
+    @app.route('/write', methods =['GET', 'POST'])
+    @login_required
+    def write():
+        writeform = WriteForm(request.form)
+        if request.method == 'POST' and writeform.validate():
+            story = Story(writeform.title.data, writeform.text.data, current_user)
+            db.session.add(story)
+            db.session.commit()
+            flash('You have submitted your story. /TODO: now what?')
+        return render_template("write.html", form = writeform )
+
+    @app.route('/newevening', methods=['GET','POST'])
+    @login_required
+    def newevening():
+        eveform = EveningForm(request.form)
+        if request.method == 'POST' and eveform.validate():
+            evening = Evening(eveform.name.data, eveform.description.data, current_user)
+            db.session.add(evening)
+            db.session.commit()
+            flash("You've made an evening.") 
+        return render_template("newevening.html", form=eveform)
+
+    @app.route('/evenings', defaults={'path': ''})
+    @app.route('/evenings/<path:path>')
+    def evening(path):
+        if path == '':
+            evenings = Evening.query.all()
+            evenings_list = ''
+            for e in evenings:
+                evenings_list = evenings_list + e.name + ', '
+            return render_template_string("all evenings: " + evenings_list)
+        else:
+           stories = Evening.query(name=path)
+           return render_template("home.html", stories) 
     return app
 
 
