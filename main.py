@@ -7,6 +7,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import exists
 from flask_user import login_required, UserManager, UserMixin, SQLAlchemyAdapter, current_user
 from wtforms import Form, BooleanField, TextField, PasswordField, validators, TextAreaField
+import markdown
+from flask import Markup
+from flaskext.markdown import Markdown
 
 class WriteForm(Form):
     text = TextAreaField('Story', [validators.Length(min=100,max=10000)] )
@@ -72,10 +75,12 @@ def create_app():
 
     # Define the Story data model.
     class Story(db.Model):
+
         __tablename__='story'
 
         id = db.Column(db.Integer, primary_key=True)
-        text = db.Column(db.String(10000), nullable=False, unique=False)  # ! can you have a 10000 character string?
+        rawtext = db.Column(db.String(10000), nullable=False, unique=False)  # ! can you have a 10000 character string?
+        renderedtext = db.Column(db.String(20000), nullable=False, unique=False) 
         title = db.Column(db.String(500), nullable=False, unique=False)
         
         author_id=db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -87,8 +92,13 @@ def create_app():
 
         def __init__(self, title, text, author):
             self.title=title
-            self.text=text
+            self.rawtext=text
             self.author=author
+            self.renderedtext=self.getMarkdown(text)
+
+        def getMarkdown(self, text):
+            return Markup(markdown.markdown(text))
+
 
 
     class Evening(db.Model):
@@ -184,4 +194,5 @@ def create_app():
 # Start development web server
 if __name__=='__main__':
     app = create_app()
+    Markdown(app)
     app.run(host='0.0.0.0', port=5000, debug=True)

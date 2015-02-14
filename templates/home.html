@@ -6,8 +6,12 @@
         <p><a href={{ url_for('members_page') }}>Members page</a> (login required)</p>
         {% block stories %}
             {% for story in story_list %}
-            <h1 class="centered">{{ story.title }} by {{ story.author.username }}</h1>
-            <div class="story_block">{{ story.text }}</div>
+                <h1 class="centered">{{ story.title }} by {{ story.author.username }}</h1>
+                <div class="story_block">
+                    {% filter markdown %}
+                        {{ story.rawtext }}
+                    {% endfilter %} 
+                </div>
             {% endfor %}
         {% endblock %}
         {% block evening_add %}
