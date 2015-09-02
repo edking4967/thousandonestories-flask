@@ -10,6 +10,7 @@ from wtforms import Form, BooleanField, TextField, PasswordField, validators, Te
 import markdown
 from flask import Markup
 from flaskext.markdown import Markdown
+from config import HEROKU_ENABLED
 
 class WriteForm(Form):
     text = TextAreaField('Story', [validators.Length(min=100,max=10000)] )
